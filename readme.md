@@ -6,7 +6,7 @@ PHP 7.0+, Composer, SimpleXML
 
 ## Installation
 
-The package is designed to be integrated into projects using Composer as their dependancy manager. To add to your project, navigate the root of the project and execute ```composer require petercoles/xml-soccer-api-client```.
+The package is designed to be integrated into projects using Composer as their dependancy manager. To add to your project, navigate the root of the project and execute ```composer require petercoles/xml-soccer```.
 
 ## Usage
 
@@ -65,7 +65,7 @@ Two sets of tests are provided, unit tests, which simply check that the client o
 
 Before running either set of tests, copy the ```phpunit.xml.dist``` to ```phpunit.xml```. If you want to run the integration tests you will also need to edit this file to insert your XML Soccer API Key towards the end, where indicated. This new file will be excluded from any git commits that you make so your API Key will remain secret even if you make public contributions to this package.
 
-To run the unit test alone, simply execute ```vendor/bin/phpunit tests/UnitTest```. Similarly, to run the integration tests only, execute ```vendor/bin/phpunit tests/IntegrationTest```, or to run both, just ```vendor/bin/phpunit```.
+To run the unit tests alone, simply execute ```vendor/bin/phpunit tests/UnitTest```. Similarly, to run the integration tests only, execute ```vendor/bin/phpunit tests/IntegrationTest```, or to run both, just ```vendor/bin/phpunit```.
 
 if you only have a demo service key, then one of the integration tests may fail as it can only be run against the live service. If this happens, add the ```--exclude-group live``` flag to suppress that <whispering>unimportant</whispering> test.
 
