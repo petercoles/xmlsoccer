@@ -1,5 +1,5 @@
 {
-    "name": "petercoles/xmlsoccer-api-client",
+    "name": "petercoles/xml-soccer",
     "description": "An API client for the XML Soccer service",
     "keywords": [ "XML Soccer", "API", "Football Data" ],
     "license": "MIT",
