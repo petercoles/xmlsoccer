@@ -135,8 +135,8 @@ class ApiClient
     /**
      * Make the request to the XML Soccer service and validate response.
      *
-     * @param  string  $uri
-     * @param  array   $params
+     * @param  string        $uri
+     * @param  array | null  $params
      * @throws RequestFailedException
      * @return SimpleXMLElement
      */
