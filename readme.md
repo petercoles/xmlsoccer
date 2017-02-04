@@ -1,3 +1,10 @@
+# XML Soccer API Client
+
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/9cb65160-ed5f-4aad-a449-f1369365fe35/mini.png)](https://insight.sensiolabs.com/projects/9cb65160-ed5f-4aad-a449-f1369365fe35)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/petercoles/xml-soccer/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/petercoles/xml-soccer/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/petercoles/xml-soccer/badges/build.png?b=master)](https://scrutinizer-ci.com/g/petercoles/xml-soccer/build-status/master)
+[![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
+
 The purpose of this package is to provide easy access to the XML Soccer API for retrieving historic and live data about football (soccer) matches.
 
 ## Requirements
