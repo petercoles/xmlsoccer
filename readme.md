@@ -69,4 +69,4 @@ To run the unit tests alone, simply execute ```vendor/bin/phpunit tests/UnitTest
 
 if you only have a demo service key, then one of the integration tests may fail as it can only be run against the live service. If this happens, add the ```--exclude-group live``` flag to suppress that <whispering>unimportant</whispering> test.
 
-Both live and demo APIs are throttled to avoid excessive load on the service's servers. Most calls to the Demo API require a 5 gap between requests (for the live system the gaps are larger and variable). If the integration test suite is run without this gap, some tests will be automatically skipped.
+Both live and demo APIs are throttled to avoid excessive load on the service's servers. Most calls to the Demo API require a 5 gap between requests (for the live system the gaps are larger and variable). The integration test suite enforces this delay before running each affected test.

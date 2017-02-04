@@ -49,11 +49,7 @@ final class IntegrationTest extends TestCase
      */
     public function testCanMakeRequestWithOutParameters()
     {
-        if (getenv('FORCE_PAUSE')) {
-            sleep(self::DEMO_API_TIME_LIMIT);
-        } elseif ($this->throttled('testCanMakeRequestWithOutParameters')) {
-            $this->markTestSkipped('Skipped to avoid throttling errors');
-        }
+        sleep(self::DEMO_API_TIME_LIMIT);
 
         $response = $this->client->getAllLeagues();
 
@@ -65,11 +61,7 @@ final class IntegrationTest extends TestCase
      */
     public function testCanMakeRequestWithParameters()
     {
-        if (getenv('FORCE_PAUSE')) {
-            sleep(self::DEMO_API_TIME_LIMIT);
-        } elseif ($this->throttled('testCanMakeRequestWithParameters')) {
-            $this->markTestSkipped('Skipped to avoid throttling errors');
-        }
+        sleep(self::DEMO_API_TIME_LIMIT);
 
         $response = $this->client->GetAllTeamsByLeagueAndSeason([ 'league' => 3, 'seasonDateString' => '1516' ]);
 
