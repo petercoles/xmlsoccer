@@ -22,5 +22,6 @@
     </testsuites>
     <php>
         <env name="XMLSOCCER_API_KEY" value="YOUR_API_KEY_GOES_HERE"/>
+        <env name="FORCE_PAUSE" value="false"/>
     </php>
 </phpunit>

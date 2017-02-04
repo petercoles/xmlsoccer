@@ -49,7 +49,9 @@ final class IntegrationTest extends TestCase
      */
     public function testCanMakeRequestWithOutParameters()
     {
-        if ($this->throttled('testCanMakeRequestWithOutParameters')) {
+        if (getenv('FORCE_PAUSE')) {
+            sleep(self::DEMO_API_TIME_LIMIT);
+        } elseif ($this->throttled('testCanMakeRequestWithOutParameters')) {
             $this->markTestSkipped('Skipped to avoid throttling errors');
         }
 
@@ -63,7 +65,9 @@ final class IntegrationTest extends TestCase
      */
     public function testCanMakeRequestWithParameters()
     {
-        if ($this->throttled('testCanMakeRequestWithParameters')) {
+        if (getenv('FORCE_PAUSE')) {
+            sleep(self::DEMO_API_TIME_LIMIT);
+        } elseif ($this->throttled('testCanMakeRequestWithParameters')) {
             $this->markTestSkipped('Skipped to avoid throttling errors');
         }
 
