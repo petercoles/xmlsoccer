@@ -25,7 +25,7 @@ final class UnitTest extends TestCase
     {
         $container = [];
         $history = Middleware::history($container);
-        $mock = new MockHandler([ new Response(200, [], $this->truncatedAllLeaguesResponse()) ]);
+        $mock = new MockHandler([ new Response(200, [], $this->getData('all-leagues')) ]);
         $handler = HandlerStack::create($mock);
         $handler->push($history);
         $guzzleClient = new Client([ 'handler' => $handler ]);
@@ -44,7 +44,7 @@ final class UnitTest extends TestCase
     {
         $container = [];
         $history = Middleware::history($container);
-        $mock = new MockHandler([ new Response(200, [], $this->truncatedAllLeaguesResponse()) ]);
+        $mock = new MockHandler([ new Response(200, [], $this->getData('all-leagues')) ]);
         $handler = HandlerStack::create($mock);
         $handler->push($history);
         $guzzleClient = new Client([ 'handler' => $handler ]);
@@ -61,7 +61,7 @@ final class UnitTest extends TestCase
 
     public function testSuccessfulRequestReturnsSimpleXmlElement()
     {
-        $mock = new MockHandler([ new Response(200, [], $this->truncatedAllLeaguesResponse()) ]);
+        $mock = new MockHandler([ new Response(200, [], $this->getData('all-leagues')) ]);
         $handler = HandlerStack::create($mock);
 
         $guzzleClient = new Client([ 'handler' => $handler ]);
@@ -76,7 +76,7 @@ final class UnitTest extends TestCase
     {
         $container = [];
         $history = Middleware::history($container);
-        $mock = new MockHandler([ new Response(200, [], $this->truncatedAllLeaguesResponse()) ]);
+        $mock = new MockHandler([ new Response(200, [], $this->getData('all-leagues')) ]);
         $handler = HandlerStack::create($mock);
         $handler->push($history);
         $guzzleClient = new Client([ 'handler' => $handler ]);
@@ -117,7 +117,7 @@ final class UnitTest extends TestCase
     {
         $this->expectException(\PeterColes\XmlSoccer\Exceptions\InvalidXmlException::class);
 
-        $mock = new MockHandler([ new Response(200, [], substr($this->truncatedAllLeaguesResponse(), 0, 1000)) ]);
+        $mock = new MockHandler([ new Response(200, [], substr($this->getData('all-leagues'), 0, 1000)) ]);
         $handler = HandlerStack::create($mock);
 
         $guzzleClient = new Client([ 'handler' => $handler ]);
@@ -137,56 +137,5 @@ final class UnitTest extends TestCase
 
         $client = new ApiClient('MADE_UP_API_KEY', true, $guzzleClient);
         $response = $client->getAllLeagues();
-    }
-
-    protected function truncatedAllLeaguesResponse()
-    {
-        return <<<'EOT'
-<?xml version="1.0" encoding="utf-8"?>
-<XMLSOCCER.COM>
-    <League>
-        <Id>1</Id>
-        <Name>English Premier League</Name>
-        <Country>England</Country>
-        <Historical_Data>Yes</Historical_Data>
-        <Fixtures>Yes</Fixtures>
-        <Livescore>Yes</Livescore>
-        <NumberOfMatches>6310</NumberOfMatches>
-        <LatestMatch>2017-02-01T21:00:00+00:00</LatestMatch>
-        <IsCup>false</IsCup>
-    </League>
-    <League>
-        <Id>2</Id>
-        <Name>English League Championship</Name>
-        <Country>England</Country>
-        <Historical_Data>Yes</Historical_Data>
-        <Fixtures>Yes</Fixtures>
-        <Livescore>Yes</Livescore>
-        <NumberOfMatches>9266</NumberOfMatches>
-        <LatestMatch>2017-02-02T20:45:00+00:00</LatestMatch>
-        <IsCup>false</IsCup>
-    </League>
-    <League>
-        <Id>3</Id>
-        <Name>Scottish Premier League</Name>
-        <Country>Scotland</Country>
-        <Historical_Data>Yes</Historical_Data>
-        <Fixtures>Yes</Fixtures>
-        <Livescore>Yes</Livescore>
-        <NumberOfMatches>3784</NumberOfMatches>
-        <LatestMatch>2017-02-01T20:45:00+00:00</LatestMatch>
-        <IsCup>false</IsCup>
-    </League>
-    <AccountInformation>Blah.</AccountInformation>
-</XMLSOCCER.COM>
-EOT;
-    }
-
-    protected function apiExceptionResponse($message)
-    {
-        return <<<EOT
-<?xml version="1.0" encoding="utf-8"?>
-<XMLSOCCER.COM>Blah, blah, "$message", blah, blah, blah</XMLSOCCER.COM>
-EOT;
     }
 }
