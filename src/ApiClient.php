@@ -4,6 +4,7 @@ namespace PeterColes\XmlSoccer;
 
 use Exception;
 use GuzzleHttp\Client as GuzzleClient;
+use PeterColes\XmlSoccer\Converters\JsonConverter;
 use PeterColes\XmlSoccer\Exceptions\ApiKeyNotAcceptedException;
 use PeterColes\XmlSoccer\Exceptions\ApiThrottlingException;
 use PeterColes\XmlSoccer\Exceptions\InvalidXmlException;
@@ -26,6 +27,11 @@ class ApiClient
      * Guzzle client instance.
      */
     protected $guzzleClient;
+
+    /**
+     * Data converter instance.
+     */
+    protected $converter = null;
 
     /**
      * Optional (recommended) setting of an API key when a new instance is instantiated.
@@ -85,12 +91,19 @@ class ApiClient
 
         try {
             $xml = simplexml_load_string($xml);
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             throw new InvalidXmlException;
         }
 
-        return $xml;
+        return $this->converter ? $this->converter->handle($xml) : $xml;
     }
+
+    public function json()
+    {
+        $this->converter = new JsonConverter;
+
+        return $this;
+    } 
 
     /**
      * Build the base URI for the API from its endpoint and the resource being requested.

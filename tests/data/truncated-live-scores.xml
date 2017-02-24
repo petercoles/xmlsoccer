@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XMLSOCCER.COM>
+    <Match>
+        <Id>370535</Id>
+        <Date>2017-02-14T17:30:00+00:00</Date>
+        <League>Serie B</League>
+        <Round>22</Round>
+        <Spectators />
+        <HomeTeam>Ascoli</HomeTeam>
+        <HomeTeam_Id>99</HomeTeam_Id>
+        <AwayTeam>Pro Vercelli</AwayTeam>
+        <AwayTeam_Id>392</AwayTeam_Id>
+        <Time>57'</Time>
+        <HomeGoals>3</HomeGoals>
+        <AwayGoals>0</AwayGoals>
+        <HomeGoalDetails>50': Riccardo Orsolini;38': Andrea Favilli;4':Own A N Other;</HomeGoalDetails>
+        <AwayGoalDetails />
+        <HomeLineupGoalkeeper>Ivan Lanni</HomeLineupGoalkeeper>
+        <AwayLineupGoalkeeper>Andrea Zaccagno</AwayLineupGoalkeeper>
+        <HomeLineupDefense>Blazey Augustyn; Gian Filippo Felicioli; Vasile Mogos; Andrea Mengoni;</HomeLineupDefense>
+        <AwayLineupDefense>Sebastiano Luperto; Elia Legati; Mattia Bani;</AwayLineupDefense>
+        <HomeLineupMidfield>Bright Addae; Francesco Cassata; Luigi Giorgi;</HomeLineupMidfield>
+        <AwayLineupMidfield>Carlo Mammarella; Umberto Germano; Simone Emmanuello; Giuseppe Vives; Andrea Palazzi;</AwayLineupMidfield>
+        <HomeLineupForward>Riccardo Orsolini; Andrea Favilli; Accursio Bentivegna;</HomeLineupForward>
+        <AwayLineupForward>Mattia Aramu; Gianmario Comi;</AwayLineupForward>
+        <HomeLineupSubstitutes>Leonardo Perez; Leonardo Davide Gatto; Davide Cinaglia; Tommaso Bianchi; Vykintas Slivka; Guillame Gigliotti; Flavio Lazzari; Riccardo Ragni; Alberto Almici;</HomeLineupSubstitutes>
+        <AwayLineupSubstitutes>Armando Vajushi; Luca Castiglia; Evans Osei; Dramane Konate; Filippo Berra; Ernesto Starita; Fabio Eguelfi; Alessandro Gilardi; Claudio Morra;</AwayLineupSubstitutes>
+        <HomeLineupCoach />
+        <AwayLineupCoach />
+        <HomeSubDetails />
+        <AwaySubDetails>46': out Simone Emmanuello;46': in Armando Vajushi;</AwaySubDetails>
+        <HomeTeamFormation>4-3-3</HomeTeamFormation>
+        <AwayTeamFormation>3-5-2</AwayTeamFormation>
+        <Location>Stadio Cino e Lillo Del Duca</Location>
+        <Stadium>Stadio Cino e Lillo Del Duca</Stadium>
+        <HomeTeamYellowCardDetails>55': Andrea Mengoni;36': Blazey Augustyn;34': Gian Filippo Felicioli;</HomeTeamYellowCardDetails>
+        <AwayTeamYellowCardDetails />
+        <HomeTeamRedCardDetails />
+        <AwayTeamRedCardDetails />
+        <HasBeenRescheduled>true</HasBeenRescheduled>
+    </Match>
+    <Match>
+        <Id>367117</Id>
+        <Date>2017-02-14T20:00:00+00:00</Date>
+        <League>English League Championship</League>
+        <Round>32</Round>
+        <Spectators />
+        <HomeTeam>Reading</HomeTeam>
+        <HomeTeam_Id>39</HomeTeam_Id>
+        <AwayTeam>Brentford</AwayTeam>
+        <AwayTeam_Id>811</AwayTeam_Id>
+        <Time>Not started</Time>
+        <HomeGoals>0</HomeGoals>
+        <AwayGoals>0</AwayGoals>
+        <HomeGoalDetails />
+        <AwayGoalDetails />
+        <HomeLineupGoalkeeper />
+        <AwayLineupGoalkeeper />
+        <HomeLineupDefense />
+        <AwayLineupDefense />
+        <HomeLineupMidfield />
+        <AwayLineupMidfield />
+        <HomeLineupForward />
+        <AwayLineupForward />
+        <HomeLineupSubstitutes />
+        <AwayLineupSubstitutes />
+        <HomeLineupCoach>Jaap Stam;</HomeLineupCoach>
+        <AwayLineupCoach>Dean Smith;</AwayLineupCoach>
+        <HomeSubDetails />
+        <AwaySubDetails />
+        <HomeTeamFormation />
+        <AwayTeamFormation />
+        <Location>Madejski Stadium</Location>
+        <Stadium>Madejski Stadium</Stadium>
+        <HomeTeamYellowCardDetails />
+        <AwayTeamYellowCardDetails />
+        <HomeTeamRedCardDetails />
+        <AwayTeamRedCardDetails />
+    </Match>
+    <AccountInformation>Data requested at 2/14/2017 7:42:59 PM from 1.2.3.4, Username: redacted. Your current supscription runs out on 12/31/2017 11:59:59 PM.</AccountInformation>
+</XMLSOCCER.COM>
