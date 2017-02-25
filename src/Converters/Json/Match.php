@@ -86,7 +86,8 @@ class Match
         }
 
         if (in_array($name, self::SUBSTITUTIONS)) {
-            return array_map([ $this, 'substitutions' ], $this->toArray($data));        }
+            return array_map([ $this, 'substitutions' ], $this->toArray($data));
+        }
 
         if (in_array($name, self::NUMERIC)) {
             return (int) $data;
@@ -142,7 +143,7 @@ class Match
     {
         $data = $this->cleanse($data);
 
-        return empty($data) ? [ ] : explode(';', rtrim($data,";"));
+        return empty($data) ? [ ] : explode(';', rtrim($data, ";"));
     }
 
     /**

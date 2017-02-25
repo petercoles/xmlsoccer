@@ -132,7 +132,7 @@ class ApiClient
             throw new MissingApiKeyException;
         }
 
-        return array_merge([ 'apiKey' => $this->apiKey ], $params[0] ?? [ ]);
+        return array_merge([ 'apiKey' => $this->apiKey ], $params[ 0 ] ?? [ ]);
     }
 
     /**
