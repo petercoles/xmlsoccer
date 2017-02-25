@@ -66,9 +66,78 @@ foreach ($xml->Match as $match) {
 }
 ```
 
+## JSON Conversion
+
+The XML Soccer service returns responses in XML. No problem in the PHP world, we have SimpleXML to hekp us with that. And if that works for you, feel free to use this package in it's default mode.
+
+But if you're like me and prefer (need) to work with a more friendly format (take a bow JSON), then from version 1.1 we've got your back. Just prefix your requests with the json() method and your responses will be magically converted into JSON. For example:
+```
+$xml = $client->getLiveScore();
+$json = $client->json()->getLiveScore();
+
+```
+
+Most response objects are simple lists of attributes. So the getAllLeagues will return an object containing a League attribute, which in turn will contain an array of objects each describing one league:
+```
+{ League: [
+        {
+            Id: "1",
+            Name: "English Premier League",
+            Country: "England",
+            ...
+            IsCup: "false"
+
+        },
+        ...
+        {
+            Id: "57",
+            Name: "Ligaat AL",
+            Country: "Isreal",
+            ...
+            IsCup: "false"
+        }
+    ]
+}
+
+```
+
+But match data, e.g. retrieved from Live Score or Historic Fixtures, have more complex structures with information about goals, cards, substititions and players all collapsed into strings that have to be unpacked if you're to make sense of them.
+
+This package takes care of this too so when converted to JSON ...
+
+The XML goal string
+```
+<HomeGoalDetails>50': Riccardo Orsolini;38': Andrea Favilli;4':Own A N Other;</HomeGoalDetails>
+```
+would be returned as:
+```
+...
+    HomeGoalDetails: [
+        {
+            Minute: 50,
+            Player: 'Riccardo Orsolini',
+            Own: false
+        },
+        {
+            Minute: 38,
+            Player: 'Andrea Favilli',
+            Own: false
+        },
+        {
+            Minute: 4,
+            Player: 'A N Other',
+            Own: true
+        }
+    ],
+...
+```
+and similarly for cards, substitutions and player lists.
+
+Note that for match data only, the data is cast to an appropriate type, i.e. integers for numeric data and boolean where appropriate, rather than everything defaulting to strings. 
+
 ## The Test Suite
 
-Two sets of tests are provided, unit tests, which simply check that the client operates as it should, and integration tests, which connect (mostly) to the demo XML Soccer service and confirm that requests are transmitted and responses are as expected.
+Three sets of tests are provided, general unit tests, which simply check that the client operates as it should, integration tests, which connect (mostly) to the demo XML Soccer service and confirm that requests are transmitted and responses are as expected, and a special suite focussed on JSON conversion.
 
 Before running either set of tests, copy the ```phpunit.xml.dist``` to ```phpunit.xml```. If you want to run the integration tests you will also need to edit this file to insert your XML Soccer API Key towards the end, where indicated. This new file will be excluded from any git commits that you make so your API Key will remain secret even if you make public contributions to this package.
 
