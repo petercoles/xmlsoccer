@@ -94,7 +94,7 @@ class Match
             return (boolean) $data;
         }
 
-        return $match[$name] = (string) $data;
+        return (string) $data;
     }
 
     protected function players($data)
