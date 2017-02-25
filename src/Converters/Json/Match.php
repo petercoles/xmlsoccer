@@ -2,6 +2,8 @@
 
 namespace PeterColes\XmlSoccer\Converters\Json;
 
+use SimpleXMLElement;
+
 class Match
 {
     const PLAYERS = [
@@ -57,9 +59,9 @@ class Match
         'AwayRedCards'
     ];
 
-    public function handle($match)
+    public function handle(SimpleXMLElement $match)
     {
-        $object = [];
+        $object = [ ];
 
         foreach ($match as $child) {
             $name = $child->getName();
@@ -76,15 +78,15 @@ class Match
         }
 
         if (in_array($name, self::GOAL_DETAILS)) {
-            return array_map([$this, 'goals'], $this->toArray($data));
+            return array_map([ $this, 'goals' ], $this->toArray($data));
         }
 
         if (in_array($name, self::CARDS)) {
-            return array_map([$this, 'cards'], $this->toArray($data));
+            return array_map([ $this, 'cards' ], $this->toArray($data));
         }
 
         if (in_array($name, self::SUBSTITUTIONS)) {
-            return array_map([$this, 'substitutions'], $this->toArray($data));        }
+            return array_map([ $this, 'substitutions' ], $this->toArray($data));        }
 
         if (in_array($name, self::NUMERIC)) {
             return (int) $data;
@@ -140,7 +142,7 @@ class Match
     {
         $data = $this->cleanse($data);
 
-        return empty($data) ? [] : explode(';', rtrim($data,";"));
+        return empty($data) ? [ ] : explode(';', rtrim($data,";"));
     }
 
     /**

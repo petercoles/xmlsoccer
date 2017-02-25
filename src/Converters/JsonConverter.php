@@ -22,7 +22,7 @@ class JsonConverter
             if (in_array($name, self::STRINGS)) {
                 $response->$name = (string) $child;
             } else {
-                $response->$name[] = $this->processChild($name, $child);
+                $response->$name[ ] = $this->processChild($name, $child);
             }
         }
 
