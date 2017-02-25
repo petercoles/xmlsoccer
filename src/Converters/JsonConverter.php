@@ -3,6 +3,7 @@
 namespace PeterColes\XmlSoccer\Converters;
 
 use stdClass;
+use SimpleXMLElement;
 
 class JsonConverter
 {
@@ -10,7 +11,7 @@ class JsonConverter
         'AccountInformation'
     ];
 
-    public function handle($xml)
+    public function handle(SimpleXMLElement $xml)
     {
         $response = new stdClass;
 
