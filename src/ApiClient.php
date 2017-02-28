@@ -29,14 +29,9 @@ class ApiClient
     protected $guzzleClient;
 
     /**
-     * Data converter instance.
+     * The raw XML response returned from the last XMLSoccer request.
      */
-    protected $converter = null;
-
-    /**
-     * Should data be returned as a json encoded string?
-     */
-    protected $encode = false;
+    protected $response;
 
     /**
      * Optional (recommended) setting of an API key when a new instance is instantiated.
@@ -84,39 +79,43 @@ class ApiClient
      */
     public function __call($method, $params)
     {
-        $xml = $this->request($this->buildUri($method), $this->prepareParams($method, $params));
+        $this->response = $this->request($this->buildUri($method), $this->prepareParams($method, $params));
 
-        if (false !== strpos($xml, 'Api-key not accepted')) {
+        if (false !== strpos($this->response, 'Api-key not accepted')) {
             throw new ApiKeyNotAcceptedException;
         }
 
-        if (false !== strpos($xml, 'To avoid misuse of the service')) {
+        if (false !== strpos($this->response, 'To avoid misuse of the service')) {
             throw new ApiThrottlingException;
         }
-
-        try {
-            $xml = simplexml_load_string($xml);
-        } catch (Exception $e) {
-            throw new InvalidXmlException;
-        }
-
-        $result = $this->converter ? $this->converter->handle($xml) : $xml;
-
-        return $this->encode ? json_encode($result) : $result;
-    }
-
-    public function object()
-    {
-        $this->converter = new ObjectConverter;
 
         return $this;
     }
 
+    public function get()
+    {
+        return $this->response;
+    }
+
+    public function xml()
+    {
+        try {
+            $xmlObject = simplexml_load_string($this->response);
+        } catch (Exception $e) {
+            throw new InvalidXmlException;
+        }
+
+        return $xmlObject;
+    }
+
+    public function object()
+    {
+        return (new ObjectConverter)->handle($this->xml());
+    }
+
     public function json()
     {
-        $this->encode = true;
-
-        return $this->object();
+        return json_encode($this->object());
     } 
 
     /**

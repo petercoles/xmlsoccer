@@ -32,14 +32,14 @@ final class IntegrationTest extends TestCase
         $this->client->setApiEndpoint();
         $this->client->setApiKey('anything');
 
-        $response = $this->client->ImAlive();
+        $response = $this->client->ImAlive()->xml();
 
         $this->assertStringContains('I am alive!', (string) $response);
     }
 
     public function testCanMakeApiConnection()
     {
-        $response = $this->client->checkApiKey();
+        $response = $this->client->checkApiKey()->xml();
 
         $this->assertStringContains('you have access', (string) $response);
     }
@@ -51,7 +51,7 @@ final class IntegrationTest extends TestCase
     {
         sleep(self::DEMO_API_TIME_LIMIT);
 
-        $response = $this->client->getAllLeagues();
+        $response = $this->client->getAllLeagues()->xml();
 
         $this->assertObjectHasAttribute('League', $response);
     }
@@ -63,7 +63,7 @@ final class IntegrationTest extends TestCase
     {
         sleep(self::DEMO_API_TIME_LIMIT);
 
-        $response = $this->client->GetAllTeamsByLeagueAndSeason([ 'league' => 3, 'seasonDateString' => '1516' ]);
+        $response = $this->client->GetAllTeamsByLeagueAndSeason([ 'league' => 3, 'seasonDateString' => '1516' ])->xml();
 
         $this->assertObjectHasAttribute('Team', $response);
     }

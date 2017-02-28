@@ -67,7 +67,7 @@ final class UnitTest extends TestCase
         $guzzleClient = new Client([ 'handler' => $handler ]);
 
         $client = new ApiClient('MADE_UP_API_KEY', true, $guzzleClient);
-        $response = $client->GetAllLeagues();
+        $response = $client->GetAllLeagues()->xml();
 
         $this->assertInstanceOf('SimpleXMLElement', $response);
     }
@@ -123,7 +123,7 @@ final class UnitTest extends TestCase
         $guzzleClient = new Client([ 'handler' => $handler ]);
 
         $client = new ApiClient('MADE_UP_API_KEY', true, $guzzleClient);
-        $response = $client->getAllLeagues();
+        $response = $client->getAllLeagues()->xml();
     }
 
     public function testRequestFailedThrowsException()

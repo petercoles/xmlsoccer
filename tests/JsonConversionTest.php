@@ -22,7 +22,7 @@ final class JsonConversionTest extends TestCase
 
         $client = new ApiClient('MADE_UP_API_KEY', true, $guzzleClient);
 
-        $response = $client->json()->GetAllLeagues();
+        $response = $client->GetAllLeagues()->json();
         $this->assertIsJson($response);
 
         $response = json_decode($response);
@@ -41,7 +41,7 @@ final class JsonConversionTest extends TestCase
         $guzzleClient = new Client([ 'handler' => $handler ]);
 
         $client = new ApiClient('MADE_UP_API_KEY', true, $guzzleClient);
-        $response = $client->json()->GetLiveScore();
+        $response = $client->GetLiveScore()->json();
         $this->assertIsJson($response);
 
         $homeGoals = [
@@ -84,7 +84,7 @@ final class JsonConversionTest extends TestCase
         $guzzleClient = new Client([ 'handler' => $handler ]);
 
         $client = new ApiClient('MADE_UP_API_KEY', true, $guzzleClient);
-        $response = $client->json()->GetOddsByFixture();
+        $response = $client->GetOddsByFixture()->json();
         $this->assertIsJson($response);
 
         $response = json_decode($response);

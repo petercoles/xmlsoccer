@@ -21,7 +21,7 @@ final class ObjectConversionTest extends TestCase
         $guzzleClient = new Client([ 'handler' => $handler ]);
 
         $client = new ApiClient('MADE_UP_API_KEY', true, $guzzleClient);
-        $response = $client->object()->GetAllLeagues();
+        $response = $client->GetAllLeagues()->object();
 
         $this->assertObjectHasAttribute('League', $response);
         $this->assertEquals(3, count($response->League));
@@ -38,7 +38,7 @@ final class ObjectConversionTest extends TestCase
         $guzzleClient = new Client([ 'handler' => $handler ]);
 
         $client = new ApiClient('MADE_UP_API_KEY', true, $guzzleClient);
-        $response = $client->object()->GetLiveScore();
+        $response = $client->GetLiveScore()->object();
 
         $homeGoals = [
             (object) [ 'Minute' => 50, 'Player' => 'Riccardo Orsolini', 'Own' => false ],
@@ -79,7 +79,7 @@ final class ObjectConversionTest extends TestCase
         $guzzleClient = new Client([ 'handler' => $handler ]);
 
         $client = new ApiClient('MADE_UP_API_KEY', true, $guzzleClient);
-        $response = $client->object()->GetOddsByFixture();
+        $response = $client->GetOddsByFixture()->object();
 
         $this->assertObjectHasAttribute('Odds', $response);
         $this->assertEquals(4, count($response->Odds));
