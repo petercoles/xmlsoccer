@@ -153,6 +153,15 @@ Note that for match data only, the data is cast to an appropriate type, i.e. int
 
 If you'd prefer to receive the object in JSON notation (i.e. as a JSON-encoded string), use the json() method instead, e.g. ```$json = $client->getLiveScore()->json();```.
 
+## Upgrading
+
+In version 1, data was returned by the call to an XMLSoccer-like method such as getLiveScore(). In version 2 however, it's returned by get(), xml(), object() or json() (see above for descriptions) according to your taste.
+
+If you were using object() or json() with version 1 simply to move this call to the end of the request, e.g.```$json = $client->json()->getLiveScore();``` becomes ```$json = $client->getLiveScore()->json();```.
+
+If you weren't using any conversions, then just append xml() to return a simpleXML object, as was the default in version 1, e.g. ```$xml = $client->getLiveScore();``` becomes ```$xml = $client->getLiveScore()->xml();```.
+```
+
 ## The Test Suite
 
 Four sets of tests are provided, general unit tests, which simply check that the client operates as it should, integration tests, which connect (mostly) to the demo XML Soccer service and confirm that requests are transmitted and responses are as expected, and special suites for PHP object and JSON conversion.
