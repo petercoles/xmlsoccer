@@ -75,12 +75,7 @@ foreach ($xml->Match as $match) {
 
 ### PHP Object
 
-If you're not a big fan of XML, no problem. Using the object() method will transform the response into a PHP object. For example,
-
-```
-$object = $client->getLiveScore()->object();
-
-```
+If you're not a big fan of XML, no problem. Using the object() method will transform the response into a PHP object. For example,```$object = $client->getLiveScore()->object();```.
 
 Most response objects are simple lists of attributes. So the getAllLeagues will return an object containing a League attribute, which in turn will contain an array of objects each describing one league (i.e. competition as it includes cups and hybrids such as The EUFA Champions League):
 ```
@@ -156,10 +151,7 @@ Note that for match data only, the data is cast to an appropriate type, i.e. int
 
 ### JSON
 
-If you'd prefer to receive the object in JSON notation (i.e. as a JSON-encoded string), use the json() method instead, e.g.
-```
-$json = $client->getLiveScore()->json();
-```
+If you'd prefer to receive the object in JSON notation (i.e. as a JSON-encoded string), use the json() method instead, e.g. ```$json = $client->getLiveScore()->json();```.
 
 ## The Test Suite
 
