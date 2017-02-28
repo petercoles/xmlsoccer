@@ -73,7 +73,7 @@ foreach ($xml->Match as $match) {
 }
 ```
 
-## PHP Object
+### PHP Object
 
 If you're not a big fan of XML, no problem. Using the object() method will transform the response into a PHP object. For example,
 
