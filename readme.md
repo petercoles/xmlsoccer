@@ -157,7 +157,7 @@ If you'd prefer to receive the object in JSON notation (i.e. as a JSON-encoded s
 
 In version 1, data was returned by the call to an XMLSoccer-like method such as getLiveScore(). In version 2 however, it's returned by get(), xml(), object() or json() (see above for descriptions) according to your taste.
 
-If you were using object() or json() with version 1 simply to move this call to the end of the request, e.g.```$json = $client->json()->getLiveScore();``` becomes ```$json = $client->getLiveScore()->json();```.
+If you were using object() or json() with version 1, simply move this call to the end of the request, e.g.```$json = $client->json()->getLiveScore();``` becomes ```$json = $client->getLiveScore()->json();```.
 
 If you weren't using any conversions, then just append xml() to return a simpleXML object, as was the default in version 1, e.g. ```$xml = $client->getLiveScore();``` becomes ```$xml = $client->getLiveScore()->xml();```.
 
