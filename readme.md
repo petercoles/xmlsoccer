@@ -51,9 +51,9 @@ $client->GetFixturesByLeagueAndSeason([ 'league' => 3, 'seasonDateString' => '05
 
 ## Transforming the Response
 
-If you like parsing XML data then to ->get() method may be all you need, feel free to skip this section.
+If you like parsing XML data manually then the ->get() method may be all you need ... feel free to skip the rest of this section.
 
-Alternatively, this package makes available three more friendly ways to receiev the response.
+Alternatively, this package makes available three more friendly ways to receive the response.
 
 ### SimpleXML Object
 
@@ -147,11 +147,11 @@ foreach ($object->Match[23]->HomeGoalDetails as $goal) {
 
 ... and similarly for cards, substitutions and player lists.
 
-Note that for match data only, the data is cast to an appropriate type, i.e. integers for numeric data and boolean where appropriate, rather than everything defaulting to strings.
+Note that for match data only, each value is cast to an appropriate type, i.e. integers for numeric data and boolean where appropriate, rather than everything defaulting to strings.
 
 ### JSON
 
-If you'd prefer to receive the object in JSON notation (i.e. as a JSON-encoded string), use the json() method instead, e.g. ```$json = $client->getLiveScore()->json();```.
+If you'd prefer to receive the object in JSON notation, i.e. as a JSON-encoded string, which can be useful for caching or passing to a browser-side application, then use the json() method instead, e.g. ```$json = $client->getLiveScore()->json();```.
 
 ## Upgrading
 
