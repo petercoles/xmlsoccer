@@ -160,7 +160,6 @@ In version 1, data was returned by the call to an XMLSoccer-like method such as 
 If you were using object() or json() with version 1 simply to move this call to the end of the request, e.g.```$json = $client->json()->getLiveScore();``` becomes ```$json = $client->getLiveScore()->json();```.
 
 If you weren't using any conversions, then just append xml() to return a simpleXML object, as was the default in version 1, e.g. ```$xml = $client->getLiveScore();``` becomes ```$xml = $client->getLiveScore()->xml();```.
-```
 
 ## The Test Suite
 
