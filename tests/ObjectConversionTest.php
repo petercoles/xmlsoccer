@@ -22,7 +22,7 @@ final class ObjectConversionTest extends TestCase
 
         $client = new ApiClient('MADE_UP_API_KEY', true, $guzzleClient);
         $response = $client->object()->GetAllLeagues();
-var_dump($response);
+
         $this->assertObjectHasAttribute('League', $response);
         $this->assertEquals(3, count($response->League));
         $this->assertEquals('English Premier League', $response->League[0]->Name);
