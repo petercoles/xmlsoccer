@@ -61,7 +61,7 @@ Using the xml() method in place of get() will cause the response to be converted
 
 ```
 try {
-    $xml = $this->client->getLiveScore()->xml();
+    $xml = $client->getLiveScore()->xml();
 } catch(\Exception $e) {
     exit('XML Soccer Exception: '.$e->getMessage());
 }
