@@ -1,7 +1,8 @@
 <?php
 
-namespace PeterColes\XmlSoccer\Converters\Json;
+namespace PeterColes\XmlSoccer\Converters\Objects;
 
+use stdClass;
 use SimpleXMLElement;
 
 class Match
@@ -61,11 +62,11 @@ class Match
 
     public function handle(SimpleXMLElement $match)
     {
-        $object = [ ];
+        $object = new stdClass;
 
         foreach ($match as $child) {
             $name = $child->getName();
-            $object[ $name ] = $this->processAtrribute($name, $child);
+            $object->$name = $this->processAtrribute($name, $child);
         }
 
         return $object;
@@ -109,13 +110,13 @@ class Match
     {
         list($minute, $player) = explode("':", $goal);
         if (substr($player, 0, 3) == 'Own') {
-            return [
+            return (object) [
                 'Minute' => (int) $minute,
                 'Player' => ltrim(str_replace('Own', '', $player)),
                 'Own' => true
             ];
         } else {
-            return [
+            return (object) [
                 'Minute' => (int) $minute,
                 'Player' => ltrim($player),
                 'Own' => false
@@ -126,16 +127,16 @@ class Match
     protected function cards($card)
     {
         list($minute, $player) = explode("': ", $card);
-        return [ 'Minute' => (int) $minute, 'Player' => $player ];
+        return (object) [ 'Minute' => (int) $minute, 'Player' => $player ];
     }
 
     protected function substitutions($substitution)
     {
         list($minute, $player) = explode("': ", $substitution);
         if (strpos($player, 'in ') === 0) {
-            return [ 'Minute' => (int) $minute, 'Type' => 'In', 'Player' => substr($player, 3) ];
+            return (object) [ 'Minute' => (int) $minute, 'Type' => 'In', 'Player' => substr($player, 3) ];
         } elseif (strpos($player, 'out ') === 0) {
-            return [ 'Minute' => (int) $minute, 'Type' => 'Out', 'Player' => substr($player, 4) ];
+            return (object) [ 'Minute' => (int) $minute, 'Type' => 'Out', 'Player' => substr($player, 4) ];
         }
     }
 

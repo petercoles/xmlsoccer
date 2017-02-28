@@ -66,44 +66,48 @@ foreach ($xml->Match as $match) {
 }
 ```
 
-## JSON Conversion
+## Conversion a PHP Object
 
 The XML Soccer service returns responses in XML. No problem in the PHP world, we have SimpleXML to hekp us with that. And if that works for you, feel free to use this package in it's default mode.
 
-But if you're like me and prefer (need) to work with a more friendly format (take a bow JSON), then from version 1.1 we've got your back. Just prefix your requests with the json() method and your responses will be magically converted into JSON. For example:
+But if you're like me and prefer (need) to work with objects, then we've got your back. Just prefix your requests with the json() method and your responses will be magically converted into a PHP object. For example:
 ```
 $xml = $client->getLiveScore();
-$json = $client->json()->getLiveScore();
+$object = $client->object()->getLiveScore();
 
 ```
 
 Most response objects are simple lists of attributes. So the getAllLeagues will return an object containing a League attribute, which in turn will contain an array of objects each describing one league:
 ```
-{ League: [
-        {
-            Id: "1",
-            Name: "English Premier League",
-            Country: "England",
+object(stdClass) {
+    ["League"]=>
+    array(n) {
+        [0]=>
+        object(stdClass) {
+            ["Id"] => "1",
+            ["Name"] => "English Premier League",
+            {"Country"] => "England",
             ...
-            IsCup: "false"
-
+            ["IsCup"] => "false"
         },
         ...
-        {
-            Id: "57",
-            Name: "Ligaat AL",
-            Country: "Isreal",
+        [n]=>
+        object {
+            ["Id"] => "57",
+            ["Name"] => "Ligaat AL",
+            {"Country"] => "Isreal",
             ...
-            IsCup: "false"
+            ["IsCup"] => "false"
         }
-    ]
+    }
+    ["AccountInformation"]=> string "Blah."
 }
 
 ```
 
 But match data, e.g. retrieved from Live Score or Historic Fixtures, have more complex structures with information about goals, cards, substititions and players all collapsed into strings that have to be unpacked if you're to make sense of them.
 
-This package takes care of this too so when converted to JSON ...
+This package takes care of this too so when converted to an object ...
 
 The XML goal string
 ```
@@ -112,28 +116,32 @@ The XML goal string
 would be returned as:
 ```
 ...
-    HomeGoalDetails: [
-        {
-            Minute: 50,
-            Player: 'Riccardo Orsolini',
-            Own: false
-        },
-        {
-            Minute: 38,
-            Player: 'Andrea Favilli',
-            Own: false
-        },
-        {
-            Minute: 4,
-            Player: 'A N Other',
-            Own: true
-        }
-    ],
+    ["HomeGoalDetails"]=>
+    object {
+        ["Minute"] => 50,
+        ["Player"] => "Riccardo Orsolini",
+        ["Own"] => false
+    },
+    object {
+        ["Minute"] => 38,
+        ["Player"] => "Andrea Favilli",
+        ["Own"] => false
+    },
+    object {
+        ["Minute"] => 4,
+        ["Player"] => "A N Othe",
+        ["Own"] => true
+    }
 ...
 ```
 and similarly for cards, substitutions and player lists.
 
-Note that for match data only, the data is cast to an appropriate type, i.e. integers for numeric data and boolean where appropriate, rather than everything defaulting to strings. 
+Note that for match data only, the data is cast to an appropriate type, i.e. integers for numeric data and boolean where appropriate, rather than everything defaulting to strings.
+
+If you'd prefer to receive the object in JSON notation (i.e. as a JSON-encoded string), use the json() method instead, e.g.
+```
+$json = $client->json()->getLiveScore();
+```
 
 ## The Test Suite
 

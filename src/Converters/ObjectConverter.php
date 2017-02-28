@@ -5,7 +5,7 @@ namespace PeterColes\XmlSoccer\Converters;
 use stdClass;
 use SimpleXMLElement;
 
-class JsonConverter
+class ObjectConverter
 {
     const STRINGS = [
         'AccountInformation'
@@ -26,15 +26,15 @@ class JsonConverter
             }
         }
 
-        return json_encode($response);
+        return $response;
     }
 
     protected function processChild($name, $child)
     {
         if ($name == 'Match') {
-            return (new Json\Match)->handle($child);
+            return (new Objects\Match)->handle($child);
         }  
 
-        return (new Json\Generic)->handle($child);
+        return (new Objects\Generic)->handle($child);
     }
 }

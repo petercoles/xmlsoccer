@@ -4,7 +4,7 @@ namespace PeterColes\XmlSoccer;
 
 use Exception;
 use GuzzleHttp\Client as GuzzleClient;
-use PeterColes\XmlSoccer\Converters\JsonConverter;
+use PeterColes\XmlSoccer\Converters\ObjectConverter;
 use PeterColes\XmlSoccer\Exceptions\ApiKeyNotAcceptedException;
 use PeterColes\XmlSoccer\Exceptions\ApiThrottlingException;
 use PeterColes\XmlSoccer\Exceptions\InvalidXmlException;
@@ -32,6 +32,11 @@ class ApiClient
      * Data converter instance.
      */
     protected $converter = null;
+
+    /**
+     * Should data be returned as a json encoded string?
+     */
+    protected $encode = false;
 
     /**
      * Optional (recommended) setting of an API key when a new instance is instantiated.
@@ -95,14 +100,23 @@ class ApiClient
             throw new InvalidXmlException;
         }
 
-        return $this->converter ? $this->converter->handle($xml) : $xml;
+        $result = $this->converter ? $this->converter->handle($xml) : $xml;
+
+        return $this->encode ? json_encode($result) : $result;
+    }
+
+    public function object()
+    {
+        $this->converter = new ObjectConverter;
+
+        return $this;
     }
 
     public function json()
     {
-        $this->converter = new JsonConverter;
+        $this->encode = true;
 
-        return $this;
+        return $this->object();
     } 
 
     /**

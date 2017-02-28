@@ -11,7 +11,7 @@ use PeterColes\XmlSoccer\ApiClient;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Exception\RequestException;
 
-final class JsonConversionTest extends TestCase
+final class ObjectConversionTest extends TestCase
 {
     public function testCanConvertLeagues()
     {
@@ -21,11 +21,8 @@ final class JsonConversionTest extends TestCase
         $guzzleClient = new Client([ 'handler' => $handler ]);
 
         $client = new ApiClient('MADE_UP_API_KEY', true, $guzzleClient);
-
-        $response = $client->json()->GetAllLeagues();
-        $this->assertIsJson($response);
-
-        $response = json_decode($response);
+        $response = $client->object()->GetAllLeagues();
+var_dump($response);
         $this->assertObjectHasAttribute('League', $response);
         $this->assertEquals(3, count($response->League));
         $this->assertEquals('English Premier League', $response->League[0]->Name);
@@ -41,8 +38,7 @@ final class JsonConversionTest extends TestCase
         $guzzleClient = new Client([ 'handler' => $handler ]);
 
         $client = new ApiClient('MADE_UP_API_KEY', true, $guzzleClient);
-        $response = $client->json()->GetLiveScore();
-        $this->assertIsJson($response);
+        $response = $client->object()->GetLiveScore();
 
         $homeGoals = [
             (object) [ 'Minute' => 50, 'Player' => 'Riccardo Orsolini', 'Own' => false ],
@@ -61,7 +57,6 @@ final class JsonConversionTest extends TestCase
             (object) [ 'Minute' => 46, 'Type' => 'In', 'Player' => 'Armando Vajushi' ],
         ];
 
-        $response = json_decode($response);
         $this->assertObjectHasAttribute('Match', $response);
         $this->assertEquals(2, count($response->Match));
         $this->assertEquals('Serie B', $response->Match[0]->League);
@@ -84,10 +79,8 @@ final class JsonConversionTest extends TestCase
         $guzzleClient = new Client([ 'handler' => $handler ]);
 
         $client = new ApiClient('MADE_UP_API_KEY', true, $guzzleClient);
-        $response = $client->json()->GetOddsByFixture();
-        $this->assertIsJson($response);
+        $response = $client->object()->GetOddsByFixture();
 
-        $response = json_decode($response);
         $this->assertObjectHasAttribute('Odds', $response);
         $this->assertEquals(4, count($response->Odds));
         $this->assertEquals(12.75, $response->Odds[1]->_10Bet_Home_Away);

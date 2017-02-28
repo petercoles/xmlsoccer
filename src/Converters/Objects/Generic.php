@@ -1,17 +1,18 @@
 <?php
 
-namespace PeterColes\XmlSoccer\Converters\Json;
+namespace PeterColes\XmlSoccer\Converters\Objects;
 
+use stdClass;
 use SimpleXMLElement;
 
 class Generic
 {
     public function handle(SimpleXMLElement $item)
     {
-        $object = [ ];
+        $object = new stdClass;
 
         foreach ($item as $child) {
-            $object[ $child->getName() ] = (string) $child;
+            $object->{$child->getName()} = (string) $child;
         }
 
         return $object;
