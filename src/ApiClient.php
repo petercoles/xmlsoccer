@@ -153,7 +153,7 @@ class ApiClient
      *
      * @return GuzzleClient
      */
-    protected function initGuzzleClient($guzzleClient = null)
+    protected function initGuzzleClient($guzzleClient)
     {
         $this->guzzleClient = $guzzleClient ?? new GuzzleClient;
     }
