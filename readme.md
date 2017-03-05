@@ -57,7 +57,7 @@ Alternatively, this package makes available three more friendly ways to receive 
 
 ### SimpleXML Object
 
-Using the xml() method in place of get() will cause the response to be converted into a [SimpleXMLElement](http://php.net/manual/en/book.simplexml.php) object. These can be iterated through as shown in the following crude example:
+Using the xml() method in place of get() will cause the response to be converted into a [SimpleXMLElement](http://php.net/manual/en/book.simplexml.php) object. These can be iterated through as shown below:
 
 ```
 try {
@@ -67,9 +67,7 @@ try {
 }
 
 foreach ($xml->Match as $match) {
-    $homeScore = empty($match->HomeGoalDetails) ? 0 : count(explode(';', $match->HomeGoalDetails)) - 1;
-    $awayScore = empty($match->AwayGoalDetails) ? 0 : count(explode(';', $match->AwayGoalDetails)) - 1;
-    echo "$match->HomeTeam v $match->AwayTeam : $homeScore-$awayScore";
+    echo "$match->HomeTeam v $match->AwayTeam : $homeGoals-$awayGoals";
 }
 ```
 
