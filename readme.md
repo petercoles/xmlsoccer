@@ -67,7 +67,7 @@ try {
 }
 
 foreach ($xml->Match as $match) {
-    echo "$match->HomeTeam v $match->AwayTeam : $homeGoals-$awayGoals";
+    echo "$match->HomeTeam v $match->AwayTeam : $match->HomeGoals-$match->AwayGoals";
 }
 ```
 
