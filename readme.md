@@ -21,7 +21,7 @@ To make an API request, you will need an API key. XML Soccer generously provides
 
 Once you have an API key, instantiate an instance of the Api client and pass the key in as the first parameter. For requests to the demo system (e.g. if you don't yet have a paid-for subscription and are using a free API key or are testing and want more generous API throttling limits), set the second paramter to true. To access the full service, just omit the 2nd parameter. For example:
 
-```
+``` php
 use PeterColes\XmlSoccer\ApiClient;
 
 class MyRequest()
@@ -44,7 +44,7 @@ A full list of the methods available can be found in the [XML Soccer service des
 
 Many methods require parameters. These are passed as an associative array. For example:
 
-```
+``` php
 $client->getNextMatchOddsByLeague([ 'league' => 3 ]);
 $client->GetFixturesByLeagueAndSeason([ 'league' => 3, 'seasonDateString' => '0506' ]);
 ```
@@ -59,7 +59,7 @@ Alternatively, this package makes available three more friendly ways to receive 
 
 Using the xml() method in place of get() will cause the response to be converted into a [SimpleXMLElement](http://php.net/manual/en/book.simplexml.php) object. These can be iterated through as shown below:
 
-```
+``` php
 try {
     $xml = $client->getLiveScore()->xml();
 } catch(\Exception $e) {
@@ -76,7 +76,8 @@ foreach ($xml->Match as $match) {
 If you're not a big fan of XML, no problem. Using the object() method will transform the response into a PHP object. For example,```$object = $client->getLiveScore()->object();```.
 
 Most response objects are simple lists of attributes. So the getAllLeagues will return an object containing a League attribute, which in turn will contain an array of objects each describing one league (i.e. competition as it includes cups and hybrids such as The EUFA Champions League):
-```
+
+``` php
 object(stdClass) {
     ["League"]=>
     array(n) {
@@ -100,17 +101,19 @@ object(stdClass) {
     }
     ["AccountInformation"]=> string "Blah."
 }
-
 ```
 
 But match data, e.g. retrieved from Live Score or Historic Fixtures, have more complex structures with information about goals, cards, substititions and players, all collapsed into strings in the default response, that have to be unpacked if you're to make sense of them.
 
 This package takes care of this too so when converted to an object this XML goal string
-```
+
+``` xml
 <HomeGoalDetails>50': Riccardo Orsolini;38': Andrea Favilli;4':Own A N Other;</HomeGoalDetails>
 ```
+
 would be returned as:
-```
+
+``` bash
 ...
     ["HomeGoalDetails"]=>
     array(3) {
@@ -134,8 +137,10 @@ would be returned as:
         }
 ...
 ```
+
 and the data within it accessed such as this
-```
+
+``` php
 foreach ($object->Match[23]->HomeGoalDetails as $goal) {
     echo $goal->Minute;   
     echo $goal->Player;   
